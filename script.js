@@ -1,12 +1,38 @@
 //HTML DOM
 const booksCards = document.getElementById("books-cards");
+const buttonAddNew = document.getElementById("add-book");
+const addNewBookModal = document.getElementById("add-new-book");
+const cancelButtonModal = document.getElementById("cancel");
+const submitButtonModal = document.getElementById("submit");
+const newBookForm = document.getElementById("new-book-form");
+
+//Event listener
+buttonAddNew.addEventListener("click", () => {
+    addNewBookModal.showModal();
+});
+
+newBookForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(newBookForm);
+    const formObject = Object.fromEntries(formData.entries());
+
+    if (formObject.read === undefined) {
+        formObject.read = false;
+    } else {
+        formObject.read = true;
+    }
+
+    addBookToLibrary(formObject.title, formObject.author, formObject.pages, formObject.read);
+    createCard(formObject);
+
+    newBookForm.reset();
+    addNewBookModal.close();
+});
 
 const myLibrary = [];
 
 function Book(title, author, pages, read) {
-    if (!new.target) {
-        throw Error("You must use the 'new' operator to call the constructor");
-    }
     this.id = crypto.randomUUID();
     this.title = title;
     this.author = author;

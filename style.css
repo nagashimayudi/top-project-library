@@ -3,13 +3,49 @@
     color: rgb(48, 48, 48);
 }
 
+header {
+    width: 100vw;
+    margin: 0px;
+    padding: 48px;
+    text-align: center;
+    color: white;
+    background-color: rgb(6, 110, 6);
+}
+
+h1 {
+    margin-bottom: 16px;
+}
+
+.add-book {
+    font-size: 16px;
+    font-weight: 700;
+    color: rgb(6, 110, 6);
+    background-color: orange;
+    border-style: none;
+    border-radius: 8px;
+    padding: 8px 32px;
+}
+
+.add-book:hover {
+    background-color: rgb(204, 133, 0);
+    cursor: pointer;
+}
+
+label {
+    display: block;
+}
+
+label[for="read"] {
+    display: inline;
+}
+
 section.books-cards {
     display: grid;
     gap: 24px;
     grid-template-columns: repeat(auto-fit, 350px);
     grid-auto-rows: minmax(auto, 250px);
     margin: 0px;
-    padding: 48px;
+    padding: 0px 48px 48px 48px;
     height: 100vh;
     width: 100vw;
     background-color: rgb(6, 110, 6);
