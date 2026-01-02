@@ -39,7 +39,7 @@ label[for="read"] {
     display: inline;
 }
 
-section.books-cards {
+section.books-container {
     display: grid;
     gap: 24px;
     grid-template-columns: repeat(auto-fit, 350px);
@@ -93,6 +93,27 @@ section.books-cards {
     justify-self: end;
     font-size: 10px;
     color: rgba(0, 0, 0, 0.4);
+}
+
+.card-delete {
+    display: grid;
+    align-items: center;
+}
+
+.card-delete button {
+    display: grid;
+    gap: 4px;
+    grid-template-columns: 16px auto;
+    padding: 4px 8px;
+    border-style: none;
+    border-radius: 2px;
+    filter: opacity(0.6);
+    background-color: transparent;
+}
+
+.card-delete button:hover {
+    cursor: pointer;
+    background-color: rgb(230, 230, 230);
 }
 
 .title {
