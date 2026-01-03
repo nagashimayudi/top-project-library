@@ -4,7 +4,6 @@ const buttonAddNew = document.getElementById("add-book");
 const addNewBookModal = document.getElementById("add-new-book");
 const cancelButtonModal = document.getElementById("cancel");
 const newBookForm = document.getElementById("new-book-form");
-const buttonDelete = document.getElementById("delete");
 
 //Event listener
 buttonAddNew.addEventListener("click", () => {
@@ -33,10 +32,6 @@ cancelButtonModal.addEventListener("click", () => {
     newBookForm.reset();
     addNewBookModal.close();
 });
-
-//Needs fixing 
-// buttonDelete.addEventListener("click", handleDelete);
-//
 
 //JavaScript
 const myLibrary = [];
@@ -68,28 +63,32 @@ function createCards(myLibrary) {
     }
 }
 
-//Needs fixing
-// function handleDelete(e) {
-//     const id = e.target.getAttribute("data-id");
-//     myLibrary = myLibrary.filter(card => card.id !== id);
+function handleDelete(e) {
+    const id = e.target.getAttribute("data-id");
+    const index = myLibrary.findIndex(book => book.id === id);
 
-//     const selectedCard = document.querySelector(`.card[data-id="${id}"]`);
-//     if (selectedCard) {
-//         selectedCard.remove();
-//     }
-//}
-//
+    if (index > -1) {
+        myLibrary.splice(index, 1);
+    }
+    createCards(myLibrary);
+}
+
 
 function populateCard(object, card) {
     let cardHeader = document.createElement("div");
     cardHeader.id = "card-header";
     cardHeader.className = "card-header";
 
+    //Added an eventListener here to handle deletion
     let cardDelete = document.createElement("div");
     cardDelete.id = "card-delete";
     cardDelete.className = "card-delete";
-    cardDelete.innerHTML = `<button data-id=${object.id}><img src=\"./media/delete-outline.svg\" id=\"delete\" width=\"16px\" height=\"16px\"> Delete</button`;
-    
+    let buttonDelete = document.createElement("button");
+    buttonDelete.setAttribute("data-id", object.id);
+    buttonDelete.innerHTML = "<img src=\"./media/delete-outline.svg\" id=\"delete\" width=\"16px\" height=\"16px\"> Delete";
+    buttonDelete.addEventListener("click", handleDelete);
+    cardDelete.appendChild(buttonDelete);
+
     let cardAuthor = document.createElement("div");
     cardAuthor.id = "author";
     cardAuthor.className = "author";
