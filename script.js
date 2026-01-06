@@ -5,6 +5,11 @@ const addNewBookModal = document.getElementById("add-new-book");
 const cancelButtonModal = document.getElementById("cancel");
 const newBookForm = document.getElementById("new-book-form");
 
+//Prototype
+Book.prototype.toggle = function() {
+    this.read = !this.read;
+}
+
 //Event listener
 buttonAddNew.addEventListener("click", () => {
     addNewBookModal.showModal();
@@ -94,8 +99,9 @@ function populateCard(object, card) {
     cardAuthor.className = "author";
     cardAuthor.textContent = object.author;
 
-    let cardRead = document.createElement("div");
+    let cardRead = document.createElement("button");
     cardRead.id = "read";
+    cardRead.setAttribute("data-id", object.id);
     if (object.read == true) {
         cardRead.className = "read";
         cardRead.innerHTML = "<img src=\"./media/check-circle.svg\" width=\"16px\" height=\"16px\" class=\"read-filter\"> Read";
@@ -103,6 +109,10 @@ function populateCard(object, card) {
         cardRead.className = "not-read";
         cardRead.innerHTML = "<img src=\"./media/check-circle-outline.svg\" width=\"16px\" height=\"16px\" class=\"not-read-filter\"> Unread";
     }
+    cardRead.addEventListener("click", (e) => {
+        object.toggle();
+        createCards(myLibrary);
+    });
 
     cardHeader.appendChild(cardDelete);
     cardHeader.appendChild(cardAuthor);
@@ -123,6 +133,6 @@ function populateCard(object, card) {
     card.appendChild(cardPages);  
 }
 
-addBookToLibrary("Dom Casmurro", "Machado de Assis", 128, true);
+addBookToLibrary("Dom Casmurro", "Machado de Assis", 128, false);
 console.log(myLibrary);
 

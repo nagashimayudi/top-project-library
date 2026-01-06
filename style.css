@@ -86,21 +86,38 @@ section.books-container {
     display: grid;
     gap: 4px;
     grid-template-columns: 16px auto;
-    align-items: center;
+    padding: 4px 8px;
+    max-height: 24px;
+    align-content: center;
     justify-self: end;
-    font-size: 10px;
-    font-weight: 500;
+    border-style: none;
+    border-radius: 2px;
+    background-color: transparent;
     color: green;
+}
+
+.read:hover {
+    cursor: pointer;
+    background-color: rgb(230, 230, 230);
 }
 
 .not-read {
     display: grid;
     gap: 4px;
     grid-template-columns: 16px auto;
-    align-items: center;
+    padding: 4px 8px;
+    max-height: 24px;
+    align-content: center;
     justify-self: end;
-    font-size: 10px;
+    border-style: none;
+    border-radius: 2px;
+    background-color: transparent;
     color: rgba(0, 0, 0, 0.4);
+}
+
+.not-read:hover {
+    cursor: pointer;
+    background-color: rgb(230, 230, 230);
 }
 
 .card-delete {
